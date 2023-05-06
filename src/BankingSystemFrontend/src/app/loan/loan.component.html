@@ -1,0 +1,95 @@
+<div class="wrapper">
+    <div class="main">
+        <div class="container">
+            <div class="header-margin"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tim-title text-center">
+                        <h2>Money Loan</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <form id="loanForm" name="LoanForm" [formGroup]="loanForm" (ngSubmit)="loanFormSubmit()">
+                    <div class="col-md-12 row-display form-group">
+                        <div class="col-md-2"><label class="form-check-label">Balance </label><span class="pull-right">:</span></div>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <input
+                                    class="form-control bg-light"
+                                    type="email"
+                                    id="email"
+                                    placeholder="Balance"
+                                    [value]="balance"
+                                    disabled
+                                />
+                                <div class="input-group-append">
+                                    <span class="glyphicon glyphicon-calendar input-group-text"> VND </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 row-display form-group">
+                        <div class="col-md-2"><label class="form-check-label">Amount (VND)</label><span class="pull-right">:</span></div>
+                        <div class="col-md-10">
+                            <input
+                                class="form-control bg-light"
+                                min="1000000"
+                                type="number"
+                                id="amount"
+                                formControlName="amount"
+                                placeholder="Amount"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-12 row-display form-group">
+                        <div class="col-md-2"><label class="form-check-label">Duration</label><span class="pull-right">:</span></div>
+                        <div class="col-md-10">
+                            <select class="form-control bg-light" formControlName="duration">
+                                <option value="1" selected>1 Year</option>
+                                <option value="2">2 Year</option>
+                                <option value="5">5 Year</option>
+                                <option value="10">10 Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-8 ml-auto mr-auto">
+                        <button class="btn btn-round btn-danger btn-block" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tim-title text-center">
+                        <h2>History</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-display">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Ammount</th>
+                                    <th>Duration (Year)</th>
+                                    <th>Start Date</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let s of loans; index as i">
+                                <tr>
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ s.amount }}</td>
+                                    <td>{{ s.duration }}</td>
+                                    <td>{{ formatDate(s.startDate) }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
